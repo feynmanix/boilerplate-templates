@@ -1,0 +1,4 @@
+{
+  "project_description": "My Project",
+  "project_slug": "{{ "{{" }} cookiecutter.project_description.lower().replace(' ', '-') }}"
+}

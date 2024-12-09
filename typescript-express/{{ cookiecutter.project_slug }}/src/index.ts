@@ -1,24 +1,24 @@
 import helmet from "helmet";
 import healthRouter from "./routes/health";
-import express, { Express, Request, Response, NextFunction } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
+import { Config } from "./config";
+import { createAccessLogsMiddleware } from "./middleware/access-logs";
+import { logger } from "./utils/logging";
+import { makeErrorHandlerMiddleware } from "./middleware/error";
 
 const app: Express = express();
-const port = parseInt(process.env.PORT || "3000");
-const host = process.env.HOST || "localhost";
 
 // Middleware
+app.use(createAccessLogsMiddleware());
 app.use(helmet());
-app.use(express.json());
+app.use(express.json({ limit: "500kb" }));
 
 // Routes
 app.use("/health", healthRouter);
 
-// Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Server error" });
-});
+// Error handling middleware at the end
+app.use(makeErrorHandlerMiddleware());
 
-app.listen(port, host, () => {
-  console.log(`Server is running at http://${host}:${port}`);
+app.listen(Config.port, Config.host, () => {
+  logger.info(`Server is running at http://${Config.host}:${Config.port}`);
 });

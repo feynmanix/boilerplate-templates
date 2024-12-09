@@ -1,0 +1,41 @@
+{
+  "name": "{{ cookiecutter.project_slug }}",
+  "description": "{{ cookiecutter.project_description }}",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx --tsconfig tsconfig.build.json src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
+    "@types/supertest": "^6.0.2",
+    "prettier": "^3.4.2",
+    "supertest": "^7.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "test": {
+    "globals": false,
+    "environment": "node",
+    "include": ["src/**/*.test.ts"]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "semi": true,
+    "quoteProps": "as-needed"
+  }
+}

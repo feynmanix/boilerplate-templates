@@ -1,0 +1,45 @@
+name: typescript-express tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Clone
+      run: |
+        pipx run cookiecutter --no-input ./typescript-express 'project_description=github test'
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Test
+      run: |
+        set -euxo pipefail
+        cd github-test
+        npm install
+        npm run format
+        npm test
+        npm run type-check
+        npm run start &
+        PID="$!"
+        
+        # Wait for the server to start
+        timeout=30
+        while ! nc -z localhost 3000; do
+          if [ "$timeout" -le 0 ]; then
+            echo "Timed out waiting for port 3000"
+            exit 1
+          fi
+          echo "Waiting for port 3000..."
+          sleep 1
+          timeout=$((timeout - 1))
+        done
+        
+        curl -fv http://localhost:3000/health
+        kill $PID
+

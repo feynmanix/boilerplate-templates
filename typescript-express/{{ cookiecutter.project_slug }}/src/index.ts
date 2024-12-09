@@ -1,5 +1,5 @@
 import helmet from "helmet";
-import statusRouter from "./routes/status";
+import healthRouter from "./routes/health";
 import express, { Express, Request, Response, NextFunction } from "express";
 
 const app: Express = express();
@@ -11,7 +11,7 @@ app.use(helmet());
 app.use(express.json());
 
 // Routes
-app.use("/status", statusRouter);
+app.use("/health", healthRouter);
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {

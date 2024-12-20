@@ -1,0 +1,49 @@
+name: typescript-cloudflare-worker tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Clone
+      run: |
+        pipx run cookiecutter --no-input ./typescript-cloudflare-worker 'project_description=github test'
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Test
+      run: |
+        set -euxo pipefail
+        cd github-test
+        # New project setup
+        npm install
+        npm run cf-typegen
+        
+        # Test other npm commands
+        npm run format
+        npm test
+        npm run type-check
+        npm run dev &
+        PID="$!"
+        
+        # Wait for the server to start
+        timeout=30
+        while ! nc -z localhost 8787; do
+          if [ "$timeout" -le 0 ]; then
+            echo "Timed out waiting for port 8787"
+            exit 1
+          fi
+          echo "Waiting for port 8787..."
+          sleep 1
+          timeout=$((timeout - 1))
+        done
+        
+        curl -fv http://localhost:8787
+        kill $PID
+

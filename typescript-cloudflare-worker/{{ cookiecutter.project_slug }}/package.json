@@ -1,0 +1,32 @@
+{
+  "name": "{{ cookiecutter.project_slug }}",
+  "description": "{{ cookiecutter.project_description }}",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy:preview": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:login": "wrangler login --browser=false --scopes=workers_scripts:write --scopes=user:read",
+    "cf-typegen": "wrangler types --experimental-include-runtime=\"./runtime.d.ts\"",
+    "test": "vitest run && vitest run -c vitest.config.worker.mts",
+    "type-check": "npm run cf-typegen >/dev/null && tsc --noEmit --skipLibCheck",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js}\""
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.2",
+    "@types/node": "^20.8.3",
+    "prettier": "^3.4.2",
+    "typescript": "^5.5.2",
+    "vitest": "2.1.8",
+    "wrangler": "^3.96.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "semi": true,
+    "quoteProps": "as-needed"
+  }
+}

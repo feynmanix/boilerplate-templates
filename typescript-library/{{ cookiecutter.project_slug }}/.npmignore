@@ -1,0 +1,10 @@
+# Keep src/ directory
+tests/
+**/*.test.ts
+tsconfig*.json
+vitest.config.js
+.github/
+.git/
+.gitignore
+*.log
+.env

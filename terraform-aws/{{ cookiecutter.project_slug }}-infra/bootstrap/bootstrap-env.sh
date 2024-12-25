@@ -9,6 +9,12 @@ if [ "$ENVIRONMENT" != "{{ cookiecutter.environment_aws_account_ids.keys() | joi
 fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+
+UPGRADE_FLAG=""
+if [ "${CI}" != "true" ]; then
+  UPGRADE_FLAG="-upgrade"
+fi
+
 export AWS_PROFILE="{{ cookiecutter.aws_cli_profile_name }}"
-terraform init -backend-config="path={{ cookiecutter.project_slug }}-bootstrap-${ENVIRONMENT}.tfstate" -upgrade -reconfigure
+terraform init -backend-config="path={{ cookiecutter.project_slug }}-bootstrap-${ENVIRONMENT}.tfstate" ${UPGRADE_FLAG} -reconfigure
 terraform apply --var-file="env-config/${ENVIRONMENT}.tfvars"

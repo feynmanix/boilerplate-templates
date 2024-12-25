@@ -8,6 +8,11 @@ if [ "$ENVIRONMENT" != "{{ cookiecutter.environment_aws_account_ids.keys() | joi
   exit 1
 fi
 
+UPGRADE_FLAG=""
+if [ "${CI}" != "true" ]; then
+  UPGRADE_FLAG="-upgrade"
+fi
+
 export AWS_PROFILE="{{ cookiecutter.aws_cli_profile_name }}"
-terraform init -backend-config="./env-config/${ENVIRONMENT}.aws.tfbackend" -upgrade -reconfigure
+terraform init -backend-config="./env-config/${ENVIRONMENT}.aws.tfbackend" ${UPGRADE_FLAG} -reconfigure
 terraform apply -var-file="env-config/${ENVIRONMENT}.tfvars" -parallelism=20

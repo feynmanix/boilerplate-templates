@@ -2,3 +2,7 @@
 package-lock.json
 poetry.lock
 
+
+.env
+logs/
+__pycache__/

@@ -1,0 +1,51 @@
+name: terraform-aws tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: true
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Clone
+      run: |
+        pipx run cookiecutter --no-input ./terraform-aws 'project_description=github test'
+    - uses: hashicorp/setup-terraform@v3
+    - name: Terraform init & validate bootstrap
+      working-directory: github-test-infra/bootstrap
+      run: |
+        set -euxo pipefail
+        terraform init -input=false -backend-config="path=github-test-bootstrap-prod.tfstate" -upgrade -reconfigure
+        terraform validate
+    - name: Terraform init & validate apply
+      working-directory: github-test-infra
+      run: |
+        set -euxo pipefail
+
+        # We need to override the provider.tf because we don't have an actual AWS account
+        cat > provider.tf << 'EOF'
+        terraform {
+          backend "local" {
+            path="tmp.tfstate"
+          }
+
+          required_providers {
+            aws = {
+              source  = "hashicorp/aws"
+              version = "~> 5.0"
+            }
+          }
+        }
+
+        provider "aws" {
+          region = var.aws_region
+        }
+        EOF
+
+        terraform init -input=false -backend-config="path=tmp.tfstate" -upgrade -reconfigure
+        terraform validate

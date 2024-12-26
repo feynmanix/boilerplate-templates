@@ -6,11 +6,12 @@ AWS resource definitions for {{ cookiecutter.project_description }}.
 2. Run
     
     ```
-    aws configure set profile.{{ cookiecutter.aws_cli_profile_name }}.region us-east-1
-    aws configure set profile.{{ cookiecutter.aws_cli_profile_name }}.sso_account_id 061051254256
-    aws configure set profile.{{ cookiecutter.aws_cli_profile_name }}.sso_start_url 'https://d-9067a84839.awsapps.com/start#/'
-    aws configure set profile.{{ cookiecutter.aws_cli_profile_name }}.sso_region us-east-1
-    aws configure set profile.{{ cookiecutter.aws_cli_profile_name }}.sso_role_name AdministratorAccess  # Replace with your actual role
+    export AWS_PROFILE={{ cookiecutter.aws_cli_profile_name }}
+    aws configure set profile.$AWS_PROFILE.region {{ cookiecutter.aws_default_region }}
+    aws configure set profile.$AWS_PROFILE.sso_account_id 1234567 # Replace with your actual account ID
+    aws configure set profile.$AWS_PROFILE.sso_start_url 'https://d-1234567.awsapps.com/start#/' # Replace with your actual start URL
+    aws configure set profile.$AWS_PROFILE.sso_region {{ cookiecutter.aws_default_region }}
+    aws configure set profile.$AWS_PROFILE.sso_role_name AdministratorAccess  # Replace with your actual role
     ```
 
 3. To verify your setup, run

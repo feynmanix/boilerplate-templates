@@ -16,6 +16,4 @@ echo -e "\n== Running ruff format =="
 poetry run ruff format .
 
 echo -e "\n== Running bandit =="
-poetry run bandit .
-
-
+poetry run bandit -c pyproject.toml -r .

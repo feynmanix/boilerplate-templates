@@ -2,24 +2,14 @@
 
 
 ## Basic commands
-* Install
-    ```bash
-    poetry install
-    ```
-* Run tests:
-    ```bash
-    poetry run pytest
-    ```
-* Run type checks:
-    ```bash
-    poetry run pyright .
-    ```
-* Format:
-    ```bash
-    poetry run black .
-    ```
+Install dependencies:
+  ```bash
+  poetry install
+  ```
   
-
-bandit -c pyproject.toml -r .
-ruff check
-ruff format    
+Running tests:
+  ```bash
+  poetry run pytest
+  ```
+  
+Execute or inspect [`run-checks.sh`](./run-checks.sh) for running other static checks and formatting. 

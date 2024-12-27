@@ -1,0 +1,52 @@
+[project]
+requires-python = ">={{ cookiecutter.min_python_version }}"
+
+[tool.poetry]
+name = "{{ cookiecutter.project_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_description }}"
+authors = []
+readme = "README.md"
+packages = [{ include = "{{ cookiecutter.root_package_name }}", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">={{ cookiecutter.min_python_version }}"
+
+[tool.poetry.group.dev.dependencies]
+pyright = ">=1.1.391"
+pytest = ">=8.3.4"
+pytest-asyncio = ">=0.25.0"
+bandit = ">=1.8.0"
+ruff = ">=0.8.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include = ["{{ cookiecutter.root_package_name }}"]
+exclude = [
+    "**/__pycache__",
+    "**/tests",
+]
+ignore = []
+
+reportMissingImports = true
+reportMissingTypeStubs = false
+pythonVersion = "{{ cookiecutter.min_python_version }}"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "--import-mode=importlib -rA --color=yes"
+testpaths = ["tests"]
+log_level = "warning"
+
+# asyncio:
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 120
+
+[tool.bandit]
+exclude_dirs = ["tests"]

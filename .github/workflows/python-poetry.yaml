@@ -1,0 +1,27 @@
+name: python-poetry tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    - name: Clone and install poetry
+      run: |
+        pipx run cookiecutter --no-input ./python-poetry 'project_description=github test'
+        pipx install poetry==1.2.0
+    - name: Test
+      working-directory: ./github-test
+      run: |
+        set -euxo pipefail
+        poetry install --no-interaction
+        ./run-checks.sh
+        
+

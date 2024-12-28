@@ -1,5 +1,5 @@
 [project]
-requires-python = ">={{ cookiecutter.min_python_version }}"
+requires-python = ">={{ cookiecutter.min_python_version }},<4.0"
 
 [tool.poetry]
 name = "{{ cookiecutter.project_name }}"
@@ -10,7 +10,7 @@ readme = "README.md"
 packages = [{ include = "{{ cookiecutter.root_package_name }}", from = "src" }]
 
 [tool.poetry.dependencies]
-python = ">={{ cookiecutter.min_python_version }}"
+python = ">={{ cookiecutter.min_python_version }},<4.0"
 
 [tool.poetry.group.dev.dependencies]
 pyright = ">=1.1.391"

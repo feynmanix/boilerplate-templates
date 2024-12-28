@@ -1,7 +1,7 @@
 {
   "project_description": "My Project",
   "project_name": "{{ cookiecutter.project_description.lower().replace(' ', '-') }}",
-  "root_package_name": "{{ cookiecutter.project_description.lower().replace(' ', '_') }}",
+  "root_package_name": "{{ cookiecutter.project_name.replace('-', '_') }}",
   "version": "1.0.0",
   "min_python_version": "3.12"
 }

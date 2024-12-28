@@ -16,7 +16,7 @@ jobs:
     - name: Clone and install poetry
       run: |
         pipx run cookiecutter --no-input ./python-poetry 'project_description=github test'
-        pipx install poetry==1.2.0
+        pipx install poetry==1.8.5
     - name: Test
       working-directory: ./github-test
       run: |

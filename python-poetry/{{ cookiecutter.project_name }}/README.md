@@ -2,7 +2,7 @@
 
 
 ## Basic commands
-Install dependencies:
+Activate python version >= {{ cookiecutter.min_python_version }} (if needed), and install dependencies:
   ```bash
   poetry install
   ```

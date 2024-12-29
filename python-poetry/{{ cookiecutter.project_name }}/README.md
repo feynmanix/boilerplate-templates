@@ -2,6 +2,8 @@
 
 
 ## Basic commands
+Prerequisites: install [Poetry](https://python-poetry.org/docs/#installation).
+
 Activate python version >= {{ cookiecutter.min_python_version }} (if needed), and install dependencies:
   ```bash
   poetry install

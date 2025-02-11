@@ -19,7 +19,7 @@
     "@types/node": "^20.8.3",
     "prettier": "^3.4.2",
     "typescript": "^5.5.2",
-    "vitest": "2.1.8",
+    "vitest": "2.1.9",
     "wrangler": "^3.96.0"
   },
   "prettier": {

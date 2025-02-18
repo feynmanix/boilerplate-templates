@@ -1,0 +1,43 @@
+{
+  "name": "{{ cookiecutter.project_slug }}",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run --passWithNoTests",
+    "type-check": "tsc --noEmit --skipLibCheck",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js}\""
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.1.7"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "@eslint/eslintrc": "^3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.4.2",
+    "vitest": "^2.1.8"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "semi": true,
+    "quoteProps": "as-needed"
+  }
+}

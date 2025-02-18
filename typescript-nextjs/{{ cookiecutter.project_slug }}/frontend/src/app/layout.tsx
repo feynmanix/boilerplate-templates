@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "{{ cookiecutter.project_name }}",
+  title: "{{ cookiecutter.project_description }}",
   // description: "",
 };
 

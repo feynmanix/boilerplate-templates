@@ -7,7 +7,7 @@ export default function NotFound() {
         <h1 className="text-2xl font-semibold">404 - Page Not Found</h1>
         <p className="text-gray-300">Sorry, I couldn&apos;t find the page you&apos;re looking for.</p>
         <Link
-          href="/typescript-nextjs/%7B%7B%20cookiecutter.project_slug%20%7D%7D/frontend/public"
+          href="/"
           className="inline-block mt-4 px-4 py-2 rounded-md bg-white/10 
                      hover:bg-white/15 transition-colors"
         >

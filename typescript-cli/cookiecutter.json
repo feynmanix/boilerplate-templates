@@ -1,0 +1,5 @@
+{
+  "project_description": "My Project",
+  "project_slug": "{{ cookiecutter.project_description.lower().replace(' ', '-') }}",
+  "binary_name": "{{ cookiecutter.project_description.lower().replace(' ', '-') }}"
+}

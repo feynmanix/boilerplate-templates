@@ -1,16 +1,16 @@
 [project]
-requires-python = ">={{ cookiecutter.min_python_version }},<4.0"
-
-[tool.poetry]
 name = "{{ cookiecutter.project_name }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.project_description }}"
 authors = []
 readme = "README.md"
-packages = [{ include = "{{ cookiecutter.root_package_name }}", from = "src" }]
+requires-python = ">={{ cookiecutter.min_python_version }}"
+dependencies = [
 
-[tool.poetry.dependencies]
-python = ">={{ cookiecutter.min_python_version }},<4.0"
+]
+
+[tool.poetry]
+packages = [{ include = "{{ cookiecutter.root_package_name }}", from = "src" }]
 
 [tool.poetry.group.dev.dependencies]
 pyright = ">=1.1.391"
@@ -20,7 +20,7 @@ bandit = ">=1.8.0"
 ruff = ">=0.8.4"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pyright]

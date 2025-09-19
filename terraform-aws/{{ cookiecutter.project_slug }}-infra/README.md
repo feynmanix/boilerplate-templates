@@ -23,7 +23,7 @@ AWS resource definitions for {{ cookiecutter.project_description }}.
    
 4. [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-5. Before running any commands involving terraform, **set the environment variable** `export AWS_PROFILE=conj-backup`
+5. Before running any commands involving terraform, **set the environment variable** `export AWS_PROFILE={{ cookiecutter.aws_cli_profile_name }}`
 
 ## First time setup
 You need to run this *only* before applying Terraform for the first time _for each environment_.

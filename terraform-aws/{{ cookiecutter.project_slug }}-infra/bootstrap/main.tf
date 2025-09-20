@@ -9,7 +9,7 @@ variable "aws_region" {
 
 variable "state_bucket_suffix" {
   type    = string
-  default = ""
+  default = "{{ cookiecutter.state_bucket_suffix }}"
 }
 
 terraform {

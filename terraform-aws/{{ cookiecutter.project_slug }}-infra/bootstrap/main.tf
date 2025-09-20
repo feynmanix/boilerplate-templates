@@ -7,6 +7,11 @@ variable "aws_region" {
   default = "{{ cookiecutter.aws_default_region }}"
 }
 
+variable "state_bucket_suffix" {
+  type    = string
+  default = ""
+}
+
 terraform {
   backend "local" {
   }
@@ -24,7 +29,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "${var.aws_account_id}-terraform-tfstate-bucket"
+  bucket = "${var.aws_account_id}-terraform-tfstate-bucket${var.state_bucket_suffix}"
 
   lifecycle {
     prevent_destroy = true

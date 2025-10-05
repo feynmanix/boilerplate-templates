@@ -8,8 +8,6 @@ if [ "$ENVIRONMENT" != "{{ cookiecutter.environment_aws_account_ids.keys() | joi
   exit 1
 fi
 
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
-
 UPGRADE_FLAG=""
 if [ "${CI}" != "true" ]; then
   UPGRADE_FLAG="-upgrade"

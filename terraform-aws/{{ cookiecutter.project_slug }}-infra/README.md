@@ -10,7 +10,7 @@ AWS resource definitions for {{ cookiecutter.project_description }}.
     aws configure set profile.$AWS_PROFILE.region {{ cookiecutter.aws_default_region }}
     aws configure set profile.$AWS_PROFILE.sso_account_id {{ cookiecutter.environment_aws_account_ids.values() | first }} # Replace with your actual account ID
     aws configure set profile.$AWS_PROFILE.sso_start_url '{{ cookiecutter.aws_sso_start_url }}' # Replace with your actual start URL
-    aws configure set profile.$AWS_PROFILE.sso_region {{ cookiecutter.aws_default_region }}
+    aws configure set profile.$AWS_PROFILE.sso_region {{ cookiecutter.aws_default_region }} # Replace with your actual SSO region
     aws configure set profile.$AWS_PROFILE.sso_role_name PowerUserAccess  # Replace with your actual role
     ```
 

@@ -4,5 +4,6 @@
   "environment_aws_account_ids": { "dev": "1234", "prod": "5678" },
   "aws_cli_profile_name": "{{ cookiecutter.project_slug }}",
   "aws_default_region": "us-east-1",
+  "aws_sso_start_url": "https://d-1234567.awsapps.com/start#/",
   "state_bucket_suffix": ""
 }

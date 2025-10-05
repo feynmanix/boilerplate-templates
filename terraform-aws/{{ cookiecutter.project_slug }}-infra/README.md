@@ -8,7 +8,7 @@ AWS resource definitions for {{ cookiecutter.project_description }}.
     ```
     export AWS_PROFILE={{ cookiecutter.aws_cli_profile_name }}
     aws configure set profile.$AWS_PROFILE.region {{ cookiecutter.aws_default_region }}
-    aws configure set profile.$AWS_PROFILE.sso_account_id 1234567 # Replace with your actual account ID
+    aws configure set profile.$AWS_PROFILE.sso_account_id {{ cookiecutter.environment_aws_account_ids.values() | first }} # Replace with your actual account ID
     aws configure set profile.$AWS_PROFILE.sso_start_url 'https://d-1234567.awsapps.com/start#/' # Replace with your actual start URL
     aws configure set profile.$AWS_PROFILE.sso_region {{ cookiecutter.aws_default_region }}
     aws configure set profile.$AWS_PROFILE.sso_role_name AdministratorAccess  # Replace with your actual role
